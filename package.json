@@ -12,7 +12,7 @@
     "url": "https://github.com/reberan/awesome-todo.git"
   },
   "scripts": {
-    "lint": "eslint --ext .js,.vue src",
+    "lint": "eslint --fix --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
