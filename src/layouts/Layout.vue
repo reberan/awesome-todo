@@ -64,14 +64,16 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 @media screen and (min-width: 768px) {
   .q-footer {
     display: none;
   }
 }
 
-.q-drawer .q-router-link--exact-active {
-  color: white !important;
+.q-drawer {
+  .q-router-link--exact-active {
+    color: white !important;
+  }
 }
 </style>
