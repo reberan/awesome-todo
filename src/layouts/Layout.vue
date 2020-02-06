@@ -18,8 +18,13 @@
     </q-header>
     <q-footer>
       <q-tabs>
-        <q-route-tab icon="list" label="Todo" to="/"/>
-        <q-route-tab icon="settings" label="Settings" to="/settings" />
+        <q-route-tab
+          v-for="nav in navs"
+          :key="nav.label"
+          :to="nav.to"
+          :icon="nav.icon"
+          :label="nav.label"
+        />
       </q-tabs>
     </q-footer>
     <q-drawer
@@ -30,22 +35,19 @@
     >
       <q-list>
         <q-item-label header class="text-grey-8">Navigation</q-item-label>
-
-        <q-item clickable exact tag="a" to="/">
+        <q-item
+          clickable
+          exact
+          tag="a"
+          v-for="nav in navs"
+          :key="nav.label"
+          :to="nav.to"
+        >
           <q-item-section avatar>
-            <q-icon name="list" />
+            <q-icon :name="nav.icon" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Todo</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable exact tag="a" to="settings">
-          <q-item-section avatar>
-            <q-icon name="settings" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Settings</q-item-label>
+            <q-item-label>{{ nav.label }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -61,7 +63,11 @@
 export default {
   data() {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      navs: [
+        { label: "Todo", icon: "list", to: "/" },
+        { label: "Settings", icon: "settings", to: "/settings" }
+      ]
     };
   }
 };
