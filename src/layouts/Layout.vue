@@ -16,7 +16,12 @@
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
-
+    <q-footer>
+      <q-tabs>
+        <q-route-tab icon="list" label="Todo" to="/"/>
+        <q-route-tab icon="settings" label="Settings" to="/settings" />
+      </q-tabs>
+    </q-footer>
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -53,8 +58,6 @@
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
