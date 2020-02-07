@@ -3,7 +3,7 @@
     clickable
     v-ripple
     :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
-    @click="task.completed = !task.completed"
+    @click="updateTask({ id: id, updates: { completed: !task.completed } })"
   >
     <q-item-section side top>
       <q-checkbox v-model="task.completed" />
@@ -32,11 +32,63 @@
         </div>
       </div>
     </q-item-section>
+    <!-- 
+        https://vuejs.org/v2/guide/events.html#Event-Modifiers
+
+        Event Modifiers
+
+        It is a very common need to call event.preventDefault() 
+        or event.stopPropagation() inside event handlers. 
+        Although we can do this easily inside methods, 
+        it would be better if the methods can be purely about 
+        ata logic rather than having to deal with DOM event details.
+
+        To address this problem, Vue provides event modifiers for v-on. 
+        Recall that modifiers are directive postfixes denoted by a dot.
+        - .stop: the click event's propagation will be stopped
+        - .prevent: the submit event will no longer reload the page
+        - .capture
+        - .self
+        - .once
+        - .passive
+
+        Order matters when using modifiers because the relevant code is generated in the same order. 
+        Therefore using 
+        v-on:click.prevent.self will prevent all clicks while 
+        v-on:click.self.prevent will only prevent clicks on the element itself.
+    -->
+    <q-item-section side>
+      <q-btn
+        flat
+        round
+        dense
+        color="red"
+        icon="delete"
+        @click.stop="promptToDelete(id)"
+      ></q-btn>
+    </q-item-section>
   </q-item>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
-  props: ["task", "id"]
+  props: ["task", "id"],
+  methods: {
+    ...mapActions("tasks", ["updateTask", "deleteTask"]),
+    promptToDelete(id) {
+      this.$q
+        .dialog({
+          title: "Confirm",
+          message: "Really delete ?",
+          cancel: true,
+          persistent: true
+        })
+        .onOk(() => {
+          this.deleteTask(id);
+        });
+    }
+  }
 };
 </script>
 <style scoped></style>
+$
