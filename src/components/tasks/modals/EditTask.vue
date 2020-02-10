@@ -1,7 +1,7 @@
 <template>
   <q-card>
     <form @submit.prevent="submitForm">
-      <modal-header>Add Task</modal-header>
+      <modal-header>Edit Task</modal-header>
       <q-card-section class="q-pt-none">
         <modal-task-name :name.sync="taskToSubmit.name" ref="modalTaskName" />
         <modal-task-due-date
@@ -9,7 +9,7 @@
           @clearDueDate="clearDueDate"
         />
         <modal-task-due-time
-          v-if="taskToSubmit.dueDate"
+          v-if="task.dueDate"
           :dueTime.sync="taskToSubmit.dueTime"
           @clearDueTime="clearDueTime"
         />
@@ -21,18 +21,14 @@
 <script>
 import { mapActions } from "vuex";
 export default {
+  props: ["id", "task"],
   data() {
     return {
-      taskToSubmit: {
-        name: "",
-        dueDate: "",
-        dueTime: "",
-        completed: false
-      }
+      taskToSubmit: {}
     };
   },
   methods: {
-    ...mapActions("tasks", ["addTask"]),
+    ...mapActions("tasks", ["updateTask"]),
     submitForm() {
       // eslint-disable-next-line no-console
       console.log("TCL: submitForm -> submitForm", this.$refs);
@@ -44,8 +40,8 @@ export default {
     submitTask() {
       // eslint-disable-next-line no-console
       console.log("TCL: submitTask -> submitTask", this.taskToSubmit);
-      this.addTask(this.taskToSubmit);
-      this.$emit("closeAddTask");
+      this.updateTask({ id: this.id, updates: this.taskToSubmit });
+      this.$emit("closeEditTask");
     },
     clearDueDate() {
       this.taskToSubmit.dueDate = "";
@@ -61,6 +57,9 @@ export default {
     "modal-task-due-date": () => import("./shared/ModalTaskDueDate"),
     "modal-task-due-time": () => import("./shared/ModalTaskDueTime"),
     "modal-task-save-button": () => import("./shared/ModalButton")
+  },
+  mounted() {
+    this.taskToSubmit = Object.assign({}, this.task);
   }
 };
 </script>

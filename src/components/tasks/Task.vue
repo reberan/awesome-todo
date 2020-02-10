@@ -62,11 +62,24 @@
         flat
         round
         dense
+        color="blue"
+        icon="edit"
+        @click="showEditTask = true"
+      ></q-btn>
+    </q-item-section>
+    <q-item-section side>
+      <q-btn
+        flat
+        round
+        dense
         color="red"
         icon="delete"
         @click.stop="promptToDelete(id)"
       ></q-btn>
     </q-item-section>
+    <q-dialog v-model="showEditTask">
+      <edit-task @close="showEditTask = false" :task="task"></edit-task>
+    </q-dialog>
   </q-item>
 </template>
 <script>
@@ -75,6 +88,11 @@ export default {
   props: ["task", "id"],
   methods: {
     ...mapActions("tasks", ["updateTask", "deleteTask"]),
+    data() {
+      return {
+        showEditTask: false
+      };
+    },
     promptToDelete(id) {
       this.$q
         .dialog({
@@ -87,6 +105,9 @@ export default {
           this.deleteTask(id);
         });
     }
+  },
+  components: {
+    "edit-task": () => import("./modals/EditTask")
   }
 };
 </script>
