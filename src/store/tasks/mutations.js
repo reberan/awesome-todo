@@ -10,5 +10,9 @@ export default {
     //   This is primarily used to get around the limitation that Vue cannot detect property deletions,
     //   but you should rarely need to use it.
     Vue.delete(state.tasks, id);
+  },
+  addTask(state, payload) {
+    const { id, task } = payload;
+    Vue.set(state.tasks, id, task);
   }
 };

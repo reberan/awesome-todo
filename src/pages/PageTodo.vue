@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md">
     <p>Todo Page</p>
-    <q-list bordered separator>
+    <q-list bordered separator v-if="shouldDisplayList" å>
       <task
         v-for="(task, key) in tasks"
         :key="key"
@@ -19,7 +19,9 @@
         @click="showAddTask = true"
       />
     </div>
-    <q-dialog v-model="showAddTask"> <add-task></add-task> </q-dialog>
+    <q-dialog v-model="showAddTask">
+      <add-task @closeAddTask="showAddTask = false"></add-task>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -29,11 +31,14 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      showAddTask: true
+      showAddTask: false
     };
   },
   computed: {
-    ...mapGetters("tasks", ["tasks"])
+    ...mapGetters("tasks", ["tasks"]),
+    shouldDisplayList() {
+      return Object.keys(this.tasks).length > 0;
+    }
   },
   components: {
     task: () => import("../components/tasks/Task"),

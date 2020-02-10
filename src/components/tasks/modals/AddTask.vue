@@ -9,13 +9,17 @@
       <q-card-section class="q-pt-none">
         <div class="row q-mb-sm">
           <q-input
+            autofocus
             class="col"
-            v-model="taskToSubmit.name"
             label="Task name"
             outlined
-            :rules="[val => !!val || 'Field is required']"
             ref="name"
-          />
+            v-model="taskToSubmit.name"
+            :rules="[val => !!val || 'Field is required']"
+            clearable
+            clear-icon="close"
+          >
+          </q-input>
         </div>
         <div class="row q-mb-sm">
           <q-input
@@ -25,6 +29,13 @@
             ref="dueDate"
           >
             <template v-slot:append>
+              <q-icon
+                name="close"
+                @click.stop="clearDueDate"
+                class="cursor-pointer"
+                v-if="taskToSubmit.dueDate"
+              />
+
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy
                   ref="qDateProxy"
@@ -40,17 +51,29 @@
             </template>
           </q-input>
         </div>
-        <div class="row q-mb-sm">
+        <div class="row q-mb-sm" v-if="taskToSubmit.dueDate">
           <q-input
             outlined
+            clear-icon="close"
             v-model="taskToSubmit.dueTime"
             label="Due time"
             ref="dueTime"
+            class="col"
           >
             <template v-slot:append>
+              <q-icon
+                name="close"
+                @click.stop="taskToSubmit.dueTime = ''"
+                class="cursor-pointer"
+                v-if="taskToSubmit.dueTime"
+              />
               <q-icon name="access_time" class="cursor-pointer">
                 <q-popup-proxy transition-show="scale" transition-hide="scale">
-                  <q-time v-model="taskToSubmit.dueTime" format24h />
+                  <q-time
+                    v-model="taskToSubmit.dueTime"
+                    format24h
+                    clear-icon="close"
+                  />
                 </q-popup-proxy>
               </q-icon>
             </template>
@@ -64,18 +87,20 @@
   </q-card>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
       taskToSubmit: {
         name: "",
         dueDate: "",
-        duteTime: "",
+        dueTime: "",
         completed: false
       }
     };
   },
   methods: {
+    ...mapActions("tasks", ["addTask"]),
     submitForm() {
       // eslint-disable-next-line no-console
       console.log("TCL: submitForm -> submitForm", this.$refs);
@@ -87,6 +112,12 @@ export default {
     submitTask() {
       // eslint-disable-next-line no-console
       console.log("TCL: submitTask -> submitTask", this.taskToSubmit);
+      this.addTask(this.taskToSubmit);
+      this.$emit("closeAddTask");
+    },
+    clearDueDate() {
+      this.taskToSubmit.dueDate = "";
+      this.taskToSubmit.dueTime = "";
     }
   }
 };
