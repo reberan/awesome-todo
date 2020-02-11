@@ -1,15 +1,15 @@
 <template>
   <q-card>
+    <modal-header>Edit Task</modal-header>
     <form @submit.prevent="submitForm">
-      <modal-header>Edit Task</modal-header>
-      <q-card-section class="q-pt-none">
+      <q-card-section>
         <modal-task-name :name.sync="taskToSubmit.name" ref="modalTaskName" />
         <modal-task-due-date
           :dueDate.sync="taskToSubmit.dueDate"
           @clearDueDate="clearDueDate"
         />
         <modal-task-due-time
-          v-if="task.dueDate"
+          v-if="taskToSubmit.dueDate"
           :dueTime.sync="taskToSubmit.dueTime"
           @clearDueTime="clearDueTime"
         />
@@ -30,16 +30,12 @@ export default {
   methods: {
     ...mapActions("tasks", ["updateTask"]),
     submitForm() {
-      // eslint-disable-next-line no-console
-      console.log("TCL: submitForm -> submitForm", this.$refs);
       this.$refs.modalTaskName.$refs.name.validate();
       if (!this.$refs.modalTaskName.$refs.name.hasError) {
         this.submitTask();
       }
     },
     submitTask() {
-      // eslint-disable-next-line no-console
-      console.log("TCL: submitTask -> submitTask", this.taskToSubmit);
       this.updateTask({ id: this.id, updates: this.taskToSubmit });
       this.$emit("closeEditTask");
     },
@@ -59,7 +55,11 @@ export default {
     "modal-task-save-button": () => import("./shared/ModalButton")
   },
   mounted() {
-    this.taskToSubmit = Object.assign({}, this.task);
+    this.taskToSubmit = Object.assign(
+      {},
+      { name: "", dueDate: "", dueTime: "" },
+      this.task
+    );
   }
 };
 </script>

@@ -14,7 +14,7 @@
           @clearDueTime="clearDueTime"
         />
       </q-card-section>
-      <modal-task-save-button></modal-task-save-button>
+      <modal-task-save-button />
     </form>
   </q-card>
 </template>
@@ -34,16 +34,12 @@ export default {
   methods: {
     ...mapActions("tasks", ["addTask"]),
     submitForm() {
-      // eslint-disable-next-line no-console
-      console.log("TCL: submitForm -> submitForm", this.$refs);
       this.$refs.modalTaskName.$refs.name.validate();
       if (!this.$refs.modalTaskName.$refs.name.hasError) {
         this.submitTask();
       }
     },
     submitTask() {
-      // eslint-disable-next-line no-console
-      console.log("TCL: submitTask -> submitTask", this.taskToSubmit);
       this.addTask(this.taskToSubmit);
       this.$emit("closeAddTask");
     },

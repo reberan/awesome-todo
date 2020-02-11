@@ -6,7 +6,7 @@
     @click="updateTask({ id: id, updates: { completed: !task.completed } })"
   >
     <q-item-section side top>
-      <q-checkbox v-model="task.completed" />
+      <q-checkbox v-model="task.completed" class="no-pointer-events" />
     </q-item-section>
 
     <q-item-section>
@@ -64,8 +64,8 @@
         dense
         color="blue"
         icon="edit"
-        @click="showEditTask = true"
-      ></q-btn>
+        @click.stop="showEditTask = true"
+      />
     </q-item-section>
     <q-item-section side>
       <q-btn
@@ -75,10 +75,10 @@
         color="red"
         icon="delete"
         @click.stop="promptToDelete(id)"
-      ></q-btn>
+      />
     </q-item-section>
     <q-dialog v-model="showEditTask">
-      <edit-task @close="showEditTask = false" :task="task"></edit-task>
+      <edit-task @closeEditTask="showEditTask = false" :task="task" :id="id" />
     </q-dialog>
   </q-item>
 </template>
@@ -86,19 +86,25 @@
 import { mapActions } from "vuex";
 export default {
   props: ["task", "id"],
+  data() {
+    return {
+      showEditTask: false
+    };
+  },
   methods: {
     ...mapActions("tasks", ["updateTask", "deleteTask"]),
-    data() {
-      return {
-        showEditTask: false
-      };
-    },
+
     promptToDelete(id) {
       this.$q
         .dialog({
           title: "Confirm",
           message: "Really delete ?",
-          cancel: true,
+          ok: {
+            push: true
+          },
+          cancel: {
+            color: "negative"
+          },
           persistent: true
         })
         .onOk(() => {
