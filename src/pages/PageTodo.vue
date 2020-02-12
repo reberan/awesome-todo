@@ -2,6 +2,8 @@
   <q-page class="q-pa-md">
     <div class="row q-mb-lg ">
       <search />
+      <q-space />
+      <sort />
     </div>
     <no-tasks
       class="q-mb-sm"
@@ -61,7 +63,8 @@ export default {
     "tasks-completed": () => import("../components/tasks/TasksCompleted"),
     "no-tasks": () => import("../components/tasks/NoTasks"),
     search: () => import("../components/tasks/tools/Search"),
-    "no-search-results": () => import("../components/tasks/NoSearchResuls")
+    "no-search-results": () => import("../components/tasks/NoSearchResuls"),
+    sort: () => import("../components/tasks/tools/Sort")
   },
   mounted() {
     this.$root.$on("showAddTask", () => (this.showAddTask = true));

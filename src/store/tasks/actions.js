@@ -14,5 +14,8 @@ export default {
   },
   setSearch({ commit }, value) {
     commit("setSearch", value);
+  },
+  setSort({ commit }, value) {
+    commit("setSort", value);
   }
 };
