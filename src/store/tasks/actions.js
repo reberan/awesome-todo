@@ -11,5 +11,8 @@ export default {
     let id = uid();
     let payload = { id, task };
     commit("addTask", payload);
+  },
+  setSearch({ commit }, value) {
+    commit("setSearch", value);
   }
 };

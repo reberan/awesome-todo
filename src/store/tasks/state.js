@@ -18,5 +18,6 @@ export default {
       dueDate: "2020/02/28",
       dueTime: "18:30"
     }
-  }
+  },
+  search: ""
 };

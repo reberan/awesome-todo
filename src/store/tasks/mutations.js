@@ -14,5 +14,8 @@ export default {
   addTask(state, payload) {
     const { id, task } = payload;
     Vue.set(state.tasks, id, task);
+  },
+  setSearch(state, value) {
+    state.search = value;
   }
 };

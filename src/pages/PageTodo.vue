@@ -1,11 +1,25 @@
 <template>
   <q-page class="q-pa-md">
-    <no-tasks class="q-mb-sm" v-if="!Object.keys(tasksTodo).length" />
+    <div class="row q-mb-lg ">
+      <search />
+    </div>
+    <no-tasks
+      class="q-mb-sm"
+      v-if="!Object.keys(tasksTodo).length && !search"
+    />
+    <no-search-results
+      class="q-mb-sm"
+      v-if="
+        !Object.keys(tasksTodo).length &&
+          !Object.keys(tasksCompleted).length &&
+          search
+      "
+    />
 
     <tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
 
     <tasks-completed
-      v-if="Object.keys(tasksCompleted).length"
+      v-if="Object.keys(tasksCompleted).length && !search"
       :tasksCompleted="tasksCompleted"
       :class="{ 'q-mt-sm': Object.keys(tasksTodo).length }"
     />
@@ -28,7 +42,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   data() {
@@ -38,13 +52,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("tasks", ["tasksTodo", "tasksCompleted"])
+    ...mapGetters("tasks", ["tasksTodo", "tasksCompleted", "tasksFiltered"]),
+    ...mapState("tasks", ["search"])
   },
   components: {
     "add-task": () => import("../components/tasks/modals/AddTask"),
     "tasks-todo": () => import("../components/tasks/TasksTodo"),
     "tasks-completed": () => import("../components/tasks/TasksCompleted"),
-    "no-tasks": () => import("../components/tasks/NoTasks")
+    "no-tasks": () => import("../components/tasks/NoTasks"),
+    search: () => import("../components/tasks/tools/Search"),
+    "no-search-results": () => import("../components/tasks/NoSearchResuls")
   },
   mounted() {
     this.$root.$on("showAddTask", () => (this.showAddTask = true));

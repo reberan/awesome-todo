@@ -1,7 +1,7 @@
 <template>
   <q-banner class="bg-grey-3 mdi-border-bottom">
     <template v-slot:avatar>
-      <q-icon name="check" color="primary" />
+      <q-icon name="mood" color="primary" />
     </template>
     No tasks to do today!
     <template v-slot:action>
