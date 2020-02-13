@@ -2,6 +2,7 @@
   <q-item
     clickable
     v-ripple
+    v-touch-hold:1000.mouse="showEditTaskModal"
     :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
     @click="updateTask({ id: id, updates: { completed: !task.completed } })"
   >
@@ -10,8 +11,8 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label :class="{ 'text-strikethrough': task.completed }">
-        {{ task.name }}
+      <q-item-label :class="{ 'text-strikethrough': task.completed }"
+        >{{ task.name }}
       </q-item-label>
     </q-item-section>
 
@@ -22,7 +23,7 @@
         </div>
         <div class="column">
           <q-item-label class="row justify-end" caption
-            >{{ task.dueDate }}
+            >{{ task.dueDate | formattedDate }}
           </q-item-label>
           <q-item-label class="row justify-end" caption>
             <small>
@@ -36,7 +37,7 @@
         https://vuejs.org/v2/guide/events.html#Event-Modifiers
 
         Event Modifiers
-
+ v-html="$options.filters.searchHighlight(task.name, search)"
         It is a very common need to call event.preventDefault() 
         or event.stopPropagation() inside event handlers. 
         Although we can do this easily inside methods, 
@@ -83,7 +84,10 @@
   </q-item>
 </template>
 <script>
-import { mapActions } from "vuex";
+//import Vue from "vue";
+import { mapActions, mapState } from "vuex";
+import { date } from "quasar";
+
 export default {
   props: ["task", "id"],
   data() {
@@ -93,7 +97,28 @@ export default {
   },
   methods: {
     ...mapActions("tasks", ["updateTask", "deleteTask"]),
+    showEditTaskModal() {
+      this.showEditTask = true;
+    },
+    /*
+    searchHighlight() {
+      // eslint-disable-next-line no-console
+      let value = this.task.name;
+      let search = this.search;
 
+      if (this.search) {
+        let searchRegExp = new RegExp(search, "i");
+        let hightlight = value.replace(
+          searchRegExp,
+          match => '<span class="bg-yellow-6>' + match + "</span>"
+        );
+        // eslint-disable-next-line no-console
+        console.log("TCL: searchHighlight -> hightlight", hightlight);
+        return Vue.compile(hightlight).render;
+      }
+      return value;
+    },
+    */
     promptToDelete(id) {
       this.$q
         .dialog({
@@ -114,6 +139,12 @@ export default {
   },
   components: {
     "edit-task": () => import("./modals/EditTask")
+  },
+  computed: {
+    ...mapState("tasks", ["search"])
+  },
+  filters: {
+    formattedDate: value => date.formatDate(value, "MMM DD YYYY")
   }
 };
 </script>
