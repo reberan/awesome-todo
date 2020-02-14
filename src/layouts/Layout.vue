@@ -2,7 +2,9 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title class="absolute-center">Awesome Todo</q-toolbar-title>
+        <q-toolbar-title class="absolute-center">{{
+          $t("appTitle")
+        }}</q-toolbar-title>
       </q-toolbar>
     </q-header>
     <q-footer>
@@ -25,7 +27,9 @@
       content-class="bg-primary"
     >
       <q-list dark>
-        <q-item-label header class="text-grey-1">Navigation</q-item-label>
+        <q-item-label header class="text-grey-1">{{
+          $t("navigation")
+        }}</q-item-label>
         <q-item
           clickable
           exact
@@ -57,9 +61,13 @@ export default {
     return {
       leftDrawerOpen: false,
       navs: [
-        { label: "Todo", icon: "list", to: "/" },
-        { label: "Settings", icon: "settings", to: "/settings" },
-        { label: "Help", icon: "help", to: "/help" }
+        { label: this.$t("navigation_todo"), icon: "list", to: "/" },
+        {
+          label: this.$t("navigation_settings"),
+          icon: "settings",
+          to: "/settings"
+        },
+        { label: this.$t("navigation_help"), icon: "help", to: "/help" }
       ]
     };
   }

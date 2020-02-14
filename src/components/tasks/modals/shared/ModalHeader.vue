@@ -5,7 +5,3 @@
     <q-btn flat round dense icon="close" v-close-popup />
   </q-card-section>
 </template>
-<script>
-export default {};
-</script>
-<style></style>

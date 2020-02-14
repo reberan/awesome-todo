@@ -4,7 +4,7 @@
       outlined
       :value="dueTime"
       @input="$emit('update:dueTime', $event)"
-      label="Due time"
+      :label="$t('taskDueTime')"
       class="col"
     >
       <template v-slot:append>

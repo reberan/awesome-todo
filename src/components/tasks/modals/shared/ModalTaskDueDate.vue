@@ -3,7 +3,7 @@
     <q-input
       outlined
       :value="dueDate"
-      label="Due date"
+      :label="$t('taskDueDate')"
       @input="$emit('update:dueDate', $event)"
     >
       <template v-slot:append>

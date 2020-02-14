@@ -3,12 +3,12 @@
     <template v-slot:avatar>
       <q-icon name="mood" color="primary" />
     </template>
-    No tasks to do today!
+    {{ $t("noTasksToDoToday") }}
     <template v-slot:action>
       <q-btn
         flat
         color="primary"
-        label="Add Task"
+        :label="$t('addTask')"
         @click="$root.$emit('showAddTask')"
       />
     </template>

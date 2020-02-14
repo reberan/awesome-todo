@@ -4,7 +4,7 @@
       autofocus
       v-select-all
       class="col"
-      label="Task name"
+      :label="$t('taskName')"
       outlined
       ref="name"
       :value="name"
@@ -32,4 +32,3 @@ export default {
   }
 };
 </script>
-<style scoped></style>

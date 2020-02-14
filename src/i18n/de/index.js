@@ -1,0 +1,31 @@
+// This is just an example,
+// so you can safely delete all default props below
+
+export default {
+  appTitle: "Genial Todo",
+  failed: "Aktion fehlgeschlagen",
+  success: "Aktion war erfolgreich",
+  save: "Speichern",
+  search: "Suchen",
+  taskName: "Name",
+  taskDueDate: "Fälligkeitsdatum",
+  taskDueTime: "Fällige Zeit",
+  addTask: "Aufgabe hinzufügen",
+  editTask: "Aufgabe bearbeiten",
+  noSearchResults: "Keine Suchergebnisse!",
+  noTasksToDoToday: "Keine Aufgaben heute zu erledigen!",
+  completed: "Abgeschlossen",
+  todo: "Zu tun",
+  notFoundMessage: "Sorry, nichts hier ...",
+  goBack: "Zurück",
+  back: "Zurück",
+  help: "Hilfe",
+  sortBy: "Sortieren nach",
+  navigation: "Navigation",
+  navigation_todo: "Aufgaben",
+  navigation_settings: "Einstellungen",
+  navigation_help: "Hilfe",
+  validation_message_field_required: "Feld ist erforderlich",
+  dialog_confirm: "Bestätigen",
+  dialog_message_really_delete: "Really delete ?"
+};

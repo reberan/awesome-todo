@@ -2,7 +2,7 @@
   <div>
     <list-header
       v-if="!settings.showTasksInOneList"
-      title="Completed"
+      :title="$t('completed')"
       bgColor="bg-green"
     />
     <q-list bordered separator>

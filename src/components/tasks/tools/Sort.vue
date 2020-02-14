@@ -5,7 +5,7 @@
     map-options
     v-model="sortBy"
     :options="options"
-    label="Sort by"
+    :label="$t('sortBy')"
     class="col q-ml-sm"
 /></template>
 <script>
@@ -14,8 +14,8 @@ export default {
   data() {
     return {
       options: [
-        { value: "name", label: "Name" },
-        { value: "dueDate", label: "Due date" }
+        { value: "name", label: this.$t("taskName") },
+        { value: "dueDate", label: this.$t("taskDueDate") }
       ]
     };
   },

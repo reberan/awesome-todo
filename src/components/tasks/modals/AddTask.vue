@@ -1,7 +1,7 @@
 <template>
   <q-card>
     <form @submit.prevent="submitForm">
-      <modal-header>Add Task</modal-header>
+      <modal-header>{{ $t("addTask") }}</modal-header>
       <q-card-section class="q-pt-none">
         <modal-task-name :name.sync="taskToSubmit.name" ref="modalTaskName" />
         <modal-task-due-date

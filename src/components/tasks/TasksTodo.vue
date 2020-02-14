@@ -2,7 +2,7 @@
   <div>
     <list-header
       v-if="!settings.showTasksInOneList"
-      title="Todo"
+      :title="$t('todo')"
       bgColor="bg-orange"
     />
     <q-list bordered separator>

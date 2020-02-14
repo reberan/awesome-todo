@@ -2,6 +2,30 @@
 // so you can safely delete all default props below
 
 export default {
+  appTitle: "Awesome Todo",
   failed: "Action failed",
-  success: "Action was successful"
+  success: "Action was successful",
+  save: "Save",
+  search: "Search",
+  taskName: "Name",
+  taskDueDate: "Due date",
+  taskDueTime: "Due time",
+  addTask: "Add Task",
+  editTask: "Edit Task",
+  noSearchResults: "No search results!",
+  noTasksToDoToday: "No tasks to do today!",
+  completed: "Completed",
+  todo: "Todo",
+  notFoundMessage: "Sorry, nothing here...",
+  goBack: "Go Back",
+  back: "Back",
+  help: "Help",
+  sortBy: "Sort by",
+  navigation: "Navigation",
+  navigation_todo: "Todos",
+  navigation_settings: "Settings",
+  navigation_help: "Help",
+  validation_message_field_required: "Field is required",
+  dialog_confirm: "Confirm",
+  dialog_message_really_delete: "Really delete ?"
 };

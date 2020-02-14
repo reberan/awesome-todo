@@ -144,11 +144,6 @@ export default {
     ...mapState("tasks", ["search"]),
     ...mapGetters("settings", ["settings"]),
     taskDueTime() {
-      // eslint-disable-next-line no-console
-      console.log(
-        "TCL: taskDueTime -> this.settings.show12HourFormat",
-        this.settings.show12HourTimeFormat
-      );
       if (this.settings.show12HourTimeFormat) {
         const dateTime = this.task.dueDate + " " + this.task.dueTime;
         return date.formatDate(dateTime, "h:mmA");
@@ -162,4 +157,3 @@ export default {
   }
 };
 </script>
-<style scoped></style>

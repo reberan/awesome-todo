@@ -1,6 +1,6 @@
 <template>
   <q-card>
-    <modal-header>Edit Task</modal-header>
+    <modal-header>{{ $t("editTask") }}</modal-header>
     <form @submit.prevent="submitForm">
       <q-card-section>
         <modal-task-name :name.sync="taskToSubmit.name" ref="modalTaskName" />

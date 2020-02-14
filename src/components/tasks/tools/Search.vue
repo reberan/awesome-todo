@@ -2,7 +2,7 @@
   <q-input
     v-model="searchField"
     @keyup.esc="searchField = ''"
-    label="Search"
+    :label="$t('search')"
     outlined
     class="col"
     v-select-all

@@ -2,13 +2,13 @@
   <q-page padding>
     <q-btn
       color="primary"
-      label="Back"
+      label="$t('back')"
       to="/settings"
       icon="chevron_left"
       flat
     />
     <q-list bordered padding class="q-mt-sm">
-      <q-item-label header>Help</q-item-label>
+      <q-item-label header>{{ $t("help") }}</q-item-label>
       <q-item tag="label" v-ripple>
         <q-item-section>
           <q-item-label>

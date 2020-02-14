@@ -3,6 +3,6 @@
     <template v-slot:avatar>
       <q-icon name="mood_bad" color="primary" />
     </template>
-    No search results!
+    {{ $t("noSearchResults") }}
   </q-banner>
 </template>

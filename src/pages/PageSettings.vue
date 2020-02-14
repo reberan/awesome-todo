@@ -18,6 +18,22 @@
           <q-toggle color="blue" v-model="showTasksInOneList" />
         </q-item-section>
       </q-item>
+      <q-item tag="label" v-ripple>
+        <q-item-section>
+          <q-item-label>Languages</q-item-label>
+        </q-item-section>
+        <q-item-section avatar>
+          <q-select
+            v-model="lang"
+            :options="langOptions"
+            dense
+            borderless
+            emit-value
+            map-options
+            options-dense
+          />
+        </q-item-section>
+      </q-item>
     </q-list>
     <q-list bordered padding class="q-mt-sm">
       <q-item-label header>More</q-item-label>
@@ -54,7 +70,18 @@ import { mapGetters, mapActions } from "vuex";
 import { openURL } from "quasar";
 export default {
   data() {
-    return {};
+    return {
+      lang: this.$i18n.locale,
+      langOptions: [
+        { value: "en-us", label: "English" },
+        { value: "de", label: "German" }
+      ]
+    };
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang;
+    }
   },
   computed: {
     ...mapGetters("settings", ["settings"]),
