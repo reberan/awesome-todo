@@ -7,7 +7,11 @@
     </div>
     <no-tasks
       class="q-mb-sm"
-      v-if="!Object.keys(tasksTodo).length && !search"
+      v-if="
+        !Object.keys(tasksTodo).length &&
+          !search &&
+          !settings.showTasksInOneList
+      "
     />
     <no-search-results
       class="q-mb-sm"
@@ -23,7 +27,9 @@
     <tasks-completed
       v-if="Object.keys(tasksCompleted).length && !search"
       :tasksCompleted="tasksCompleted"
-      :class="{ 'q-mt-sm': Object.keys(tasksTodo).length }"
+      :class="{
+        'q-mt-sm': Object.keys(tasksTodo).length && !settings.showTasksInOneList
+      }"
     />
 
     <div class="absolute-bottom text-center q-mb-lg">
@@ -55,6 +61,7 @@ export default {
   },
   computed: {
     ...mapGetters("tasks", ["tasksTodo", "tasksCompleted", "tasksFiltered"]),
+    ...mapGetters("settings", ["settings"]),
     ...mapState("tasks", ["search"])
   },
   components: {

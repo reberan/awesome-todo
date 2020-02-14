@@ -58,7 +58,8 @@ export default {
       leftDrawerOpen: false,
       navs: [
         { label: "Todo", icon: "list", to: "/" },
-        { label: "Settings", icon: "settings", to: "/settings" }
+        { label: "Settings", icon: "settings", to: "/settings" },
+        { label: "Help", icon: "help", to: "/help" }
       ]
     };
   }

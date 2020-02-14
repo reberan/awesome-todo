@@ -27,7 +27,7 @@
           </q-item-label>
           <q-item-label class="row justify-end" caption>
             <small>
-              {{ task.dueTime }}
+              {{ taskDueTime }}
             </small>
           </q-item-label>
         </div>
@@ -85,7 +85,7 @@
 </template>
 <script>
 //import Vue from "vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 import { date } from "quasar";
 
 export default {
@@ -141,7 +141,21 @@ export default {
     "edit-task": () => import("./modals/EditTask")
   },
   computed: {
-    ...mapState("tasks", ["search"])
+    ...mapState("tasks", ["search"]),
+    ...mapGetters("settings", ["settings"]),
+    taskDueTime() {
+      // eslint-disable-next-line no-console
+      console.log(
+        "TCL: taskDueTime -> this.settings.show12HourFormat",
+        this.settings.show12HourTimeFormat
+      );
+      if (this.settings.show12HourTimeFormat) {
+        const dateTime = this.task.dueDate + " " + this.task.dueTime;
+        return date.formatDate(dateTime, "h:mmA");
+      } else {
+        return this.task.dueTime;
+      }
+    }
   },
   filters: {
     formattedDate: value => date.formatDate(value, "MMM DD YYYY")
