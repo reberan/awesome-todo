@@ -7,6 +7,7 @@ export default {
   success: "Action was successful",
   save: "Save",
   search: "Search",
+  cancel: "Cancel",
   taskName: "Name",
   taskDueDate: "Due date",
   taskDueTime: "Due time",
@@ -27,5 +28,13 @@ export default {
   navigation_help: "Help",
   validation_message_field_required: "Field is required",
   dialog_confirm: "Confirm",
-  dialog_message_really_delete: "Really delete ?"
+  dialog_message_really_delete: "Really delete ?",
+  settings_page_settings_header: "Settings",
+  settings_page_show_12_format: "Show 12h time format",
+  settings_page_show_single_list: "Show tasks in one list",
+  settings_page_languages: "Languages",
+  settings_page_more_header: "More",
+  settings_page_help: "Help",
+  settings_page_visit_our_website: "Visit our Website",
+  settings_page_email_us: "Email us"
 };

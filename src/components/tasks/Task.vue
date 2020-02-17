@@ -122,8 +122,8 @@ export default {
     promptToDelete(id) {
       this.$q
         .dialog({
-          title: "Confirm",
-          message: "Really delete ?",
+          title: this.$t("dialog_confirm"),
+          message: this.$t("dialog_message_really_delete"),
           ok: {
             push: true
           },

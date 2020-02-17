@@ -1,10 +1,12 @@
 <template>
   <q-page padding>
     <q-list bordered padding>
-      <q-item-label header>Settings</q-item-label>
+      <q-item-label header>{{
+        $t("settings_page_settings_header")
+      }}</q-item-label>
       <q-item tag="label" v-ripple>
         <q-item-section>
-          <q-item-label>Show 12h time format</q-item-label>
+          <q-item-label>{{ $t("settings_page_show_12_format") }}</q-item-label>
         </q-item-section>
         <q-item-section avatar>
           <q-toggle color="blue" v-model="show12HourTimeFormat" />
@@ -12,7 +14,9 @@
       </q-item>
       <q-item tag="label" v-ripple>
         <q-item-section>
-          <q-item-label>Show tasks in one list</q-item-label>
+          <q-item-label>{{
+            $t("settings_page_show_single_list")
+          }}</q-item-label>
         </q-item-section>
         <q-item-section avatar>
           <q-toggle color="blue" v-model="showTasksInOneList" />
@@ -20,12 +24,12 @@
       </q-item>
       <q-item tag="label" v-ripple>
         <q-item-section>
-          <q-item-label>Languages</q-item-label>
+          <q-item-label>{{ $t("settings_page_languages") }}</q-item-label>
         </q-item-section>
         <q-item-section avatar>
           <q-select
             v-model="lang"
-            :options="langOptions"
+            :options="languageOptions"
             dense
             borderless
             emit-value
@@ -36,10 +40,10 @@
       </q-item>
     </q-list>
     <q-list bordered padding class="q-mt-sm">
-      <q-item-label header>More</q-item-label>
+      <q-item-label header>{{ $t("settings_page_more_header") }}</q-item-label>
       <q-item tag="label" v-ripple to="/help">
         <q-item-section>
-          <q-item-label>Help</q-item-label>
+          <q-item-label>{{ $t("settings_page_help") }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <q-icon name="chevron_right" />
@@ -47,7 +51,9 @@
       </q-item>
       <q-item tag="a" v-ripple @click="visitOurWebsite">
         <q-item-section>
-          <q-item-label>Visit our Website</q-item-label>
+          <q-item-label>{{
+            $t("settings_page_visit_our_website")
+          }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <q-icon name="chevron_right" />
@@ -55,7 +61,7 @@
       </q-item>
       <q-item tag="a" v-ripple @click="emailUs">
         <q-item-section>
-          <q-item-label>Email us</q-item-label>
+          <q-item-label>{{ $t("settings_page_email_us") }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <q-icon name="chevron_right" />
@@ -72,7 +78,7 @@ export default {
   data() {
     return {
       lang: this.$i18n.locale,
-      langOptions: [
+      languageOptions: [
         { value: "en-us", label: "English" },
         { value: "de", label: "German" }
       ]
@@ -80,7 +86,10 @@ export default {
   },
   watch: {
     lang(lang) {
+      // eslint-disable-next-line no-console
+      console.log("TCL: language -> value", lang);
       this.$i18n.locale = lang;
+      this.setLanguage(lang);
     }
   },
   computed: {
@@ -100,19 +109,32 @@ export default {
       set(value) {
         this.setShowTasksInOneList(value);
       }
+    },
+    language: {
+      get() {
+        return this.settings.language || this.$i18n.locale;
+      },
+      set(value) {
+        // eslint-disable-next-line no-console
+        console.log("TCL: set -> value", value);
+
+        this.setLanguage(value);
+      }
     }
   },
   methods: {
     ...mapActions("settings", [
       "setShow12HourTimeFormat",
-      "setShowTasksInOneList"
+      "setShowTasksInOneList",
+      "setLanguage"
     ]),
     visitOurWebsite() {
       openURL("https://github.com/reberan/awesome-todo");
     },
     emailUs() {
-      window.location.href =
-        "mailto:reberan@mail.com?subject=Awesome Todo Feedback";
+      window.location.href = `mailto:reberan@mail.com?subject=${this.$t(
+        "settings_email_subject"
+      )}`;
     }
   }
 };

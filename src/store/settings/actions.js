@@ -8,6 +8,12 @@ export default {
     commit("setShowTasksInOneList", payload);
     dispatch("saveSettings");
   },
+  setLanguage({ commit, dispatch }, payload) {
+    // eslint-disable-next-line no-console
+    console.log("TCL: setLanguage -> ", payload);
+    commit("setLanguage"), payload;
+    dispatch("saveSettings");
+  },
   saveSettings({ state }) {
     LocalStorage.set("settings", state.settings);
   },

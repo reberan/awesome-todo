@@ -2,7 +2,7 @@
   <q-page padding>
     <q-btn
       color="primary"
-      label="$t('back')"
+      :label="$t('back')"
       to="/settings"
       icon="chevron_left"
       flat

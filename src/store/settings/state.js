@@ -1,6 +1,7 @@
 export default {
   settings: {
     show12HourTimeFormat: false,
-    showTasksInOneList: false
+    showTasksInOneList: false,
+    language: ""
   }
 };
