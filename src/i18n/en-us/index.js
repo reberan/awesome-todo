@@ -33,5 +33,7 @@ export default {
   settings_page_more_header: "More",
   settings_page_help: "Help",
   settings_page_visit_our_website: "Visit our Website",
-  settings_page_email_us: "Email us"
+  settings_page_email_us: "Email us",
+  language_de: "German",
+  language_en: "English"
 };

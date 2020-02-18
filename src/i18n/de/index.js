@@ -34,5 +34,7 @@ export default {
   settings_page_help: "Hilfe",
   settings_page_visit_our_website: "Besuche unsere Webseite",
   settings_page_email_us: "Schreiben Sie uns eine E-Mail",
-  settings_email_subject: "Genial Todo Feedback"
+  settings_email_subject: "Genial Todo Feedback",
+  language_de: "Deutsch",
+  language_en: "Englisch"
 };

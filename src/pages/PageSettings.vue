@@ -77,11 +77,7 @@ import { openURL } from "quasar";
 export default {
   data() {
     return {
-      lang: this.$i18n.locale,
-      languageOptions: [
-        { value: "en-us", label: "English" },
-        { value: "de", label: "German" }
-      ]
+      lang: this.$i18n.locale
     };
   },
   watch: {
@@ -120,6 +116,12 @@ export default {
 
         this.setLanguage(value);
       }
+    },
+    languageOptions() {
+      return [
+        { value: "en-us", label: this.$t("language_en") },
+        { value: "de", label: this.$t("language_de") }
+      ];
     }
   },
   methods: {
