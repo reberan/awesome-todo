@@ -59,8 +59,12 @@
 export default {
   data() {
     return {
-      leftDrawerOpen: false,
-      navs: [
+      leftDrawerOpen: false
+    };
+  },
+  computed: {
+    navs() {
+      return [
         { label: this.$t("navigation_todo"), icon: "list", to: "/" },
         {
           label: this.$t("navigation_settings"),
@@ -68,8 +72,8 @@ export default {
           to: "/settings"
         },
         { label: this.$t("navigation_help"), icon: "help", to: "/help" }
-      ]
-    };
+      ];
+    }
   }
 };
 </script>
