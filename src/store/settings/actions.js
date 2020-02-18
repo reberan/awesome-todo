@@ -9,9 +9,7 @@ export default {
     dispatch("saveSettings");
   },
   setLanguage({ commit, dispatch }, payload) {
-    // eslint-disable-next-line no-console
-    console.log("TCL: setLanguage -> ", payload);
-    commit("setLanguage"), payload;
+    commit("setLanguage", payload);
     dispatch("saveSettings");
   },
   saveSettings({ state }) {

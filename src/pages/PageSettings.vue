@@ -28,7 +28,7 @@
         </q-item-section>
         <q-item-section avatar>
           <q-select
-            v-model="lang"
+            v-model="language"
             :options="languageOptions"
             dense
             borderless
@@ -75,17 +75,10 @@
 import { mapGetters, mapActions } from "vuex";
 import { openURL } from "quasar";
 export default {
-  data() {
-    return {
-      lang: this.$i18n.locale
-    };
-  },
   watch: {
-    lang(lang) {
-      // eslint-disable-next-line no-console
-      console.log("TCL: language -> value", lang);
-      this.$i18n.locale = lang;
-      this.setLanguage(lang);
+    language(language) {
+      this.$i18n.locale = language;
+      this.setLanguage(language);
     }
   },
   computed: {
@@ -111,9 +104,6 @@ export default {
         return this.settings.language || this.$i18n.locale;
       },
       set(value) {
-        // eslint-disable-next-line no-console
-        console.log("TCL: set -> value", value);
-
         this.setLanguage(value);
       }
     },
