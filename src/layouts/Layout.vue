@@ -5,6 +5,13 @@
         <q-toolbar-title class="absolute-center">{{
           $t("appTitle")
         }}</q-toolbar-title>
+        <q-btn
+          icon-right="account_circle"
+          :label="$t('login')"
+          class="absolute-right"
+          to="/auth"
+          flat
+        />
       </q-toolbar>
     </q-header>
     <q-footer>

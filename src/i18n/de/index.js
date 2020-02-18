@@ -36,5 +36,11 @@ export default {
   settings_page_email_us: "Schreiben Sie uns eine E-Mail",
   settings_email_subject: "Genial Todo Feedback",
   language_de: "Deutsch",
-  language_en: "Englisch"
+  language_en: "Englisch",
+  tab_register_banner_text:
+    "Registrieren Sie sich, um überall auf Ihre Todos zuzugreifen!",
+  email: "Email",
+  passwort: "Passwort",
+  register: "Registrieren",
+  login: "Einloggen"
 };

@@ -35,5 +35,10 @@ export default {
   settings_page_visit_our_website: "Visit our Website",
   settings_page_email_us: "Email us",
   language_de: "German",
-  language_en: "English"
+  language_en: "English",
+  tab_register_banner_text: "Register to access your Todos anywhere!",
+  email: "Email",
+  password: "Password",
+  register: "Register",
+  login: "Login"
 };
