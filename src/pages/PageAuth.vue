@@ -15,10 +15,10 @@
       <q-separator></q-separator>
       <q-tab-panels v-model="activeTab">
         <q-tab-panel name="login">
-          <login />
+          <login-register :tab="activeTab" />
         </q-tab-panel>
         <q-tab-panel name="register">
-          <register />
+          <login-register :tab="activeTab" />
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -32,8 +32,7 @@ export default {
     };
   },
   components: {
-    register: () => import("../components/auth/Register.vue"),
-    login: () => import("../components/auth/Login.vue")
+    "login-register": () => import("../components/auth/LoginRegister.vue")
   }
 };
 </script>

@@ -37,10 +37,14 @@ export default {
   settings_email_subject: "Genial Todo Feedback",
   language_de: "Deutsch",
   language_en: "Englisch",
+  tab_login_banner_text: "Anmelden, um auf Ihre Todos zuzugreifen!",
   tab_register_banner_text:
     "Registrieren Sie sich, um überall auf Ihre Todos zuzugreifen!",
   email: "Email",
   password: "Passwort",
   register: "Registrieren",
-  login: "Einloggen"
+  login: "Einloggen",
+  validation_message_password_error:
+    "Bitte verwenden Sie mindestens 6 Zeichen!",
+  validation_message_email_error: "Ungültige E-Mail-Adresse!"
 };

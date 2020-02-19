@@ -37,8 +37,11 @@ export default {
   language_de: "German",
   language_en: "English",
   tab_register_banner_text: "Register to access your Todos anywhere!",
+  tab_login_banner_text: "Login to access your Todos!",
   email: "Email",
   password: "Password",
   register: "Register",
-  login: "Login"
+  login: "Login",
+  validation_message_password_error: "Please use minimum 6 characters!",
+  validation_message_email_error: "Invalid email address!"
 };
