@@ -1,47 +1,56 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="row q-mb-lg ">
-      <search />
-      <q-space />
-      <sort />
-    </div>
-    <no-tasks
-      class="q-mb-sm"
-      v-if="
-        !Object.keys(tasksTodo).length &&
-          !search &&
-          !settings.showTasksInOneList
-      "
-    />
-    <no-search-results
-      class="q-mb-sm"
-      v-if="
-        !Object.keys(tasksTodo).length &&
-          !Object.keys(tasksCompleted).length &&
-          search
-      "
-    />
-
-    <tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
-
-    <tasks-completed
-      v-if="Object.keys(tasksCompleted).length && !search"
-      :tasksCompleted="tasksCompleted"
-      :class="{
-        'q-mt-sm': Object.keys(tasksTodo).length && !settings.showTasksInOneList
-      }"
-    />
-
-    <div class="absolute-bottom text-center q-mb-lg">
-      <q-btn
-        round
-        color="primary"
-        text-color="white"
-        icon="add"
-        size="24px"
-        @click="showAddTask = true"
+    <template v-if="tasksDownloaded">
+      <div class="row q-mb-lg">
+        <search />
+        <q-space />
+        <sort />
+      </div>
+      <no-tasks
+        class="q-mb-sm"
+        v-if="
+          !Object.keys(tasksTodo).length &&
+            !search &&
+            !settings.showTasksInOneList
+        "
       />
-    </div>
+      <no-search-results
+        class="q-mb-sm"
+        v-if="
+          !Object.keys(tasksTodo).length &&
+            !Object.keys(tasksCompleted).length &&
+            search
+        "
+      />
+
+      <tasks-todo v-if="Object.keys(tasksTodo).length" :tasksTodo="tasksTodo" />
+
+      <tasks-completed
+        v-if="Object.keys(tasksCompleted).length && !search"
+        :tasksCompleted="tasksCompleted"
+        :class="{
+          'q-mt-sm':
+            Object.keys(tasksTodo).length && !settings.showTasksInOneList
+        }"
+      />
+
+      <div class="absolute-bottom text-center q-mb-lg">
+        <q-btn
+          round
+          color="primary"
+          text-color="white"
+          icon="add"
+          size="24px"
+          @click="showAddTask = true"
+        />
+      </div>
+    </template>
+
+    <template v-else>
+      <span class="absolute-center">
+        <q-spinner color="primary" size="5em" />
+      </span>
+    </template>
 
     <q-dialog v-model="showAddTask">
       <add-task @closeAddTask="showAddTask = false" />
@@ -62,7 +71,7 @@ export default {
   computed: {
     ...mapGetters("tasks", ["tasksTodo", "tasksCompleted", "tasksFiltered"]),
     ...mapGetters("settings", ["settings"]),
-    ...mapState("tasks", ["search"])
+    ...mapState("tasks", ["search", "tasksDownloaded"])
   },
   components: {
     "add-task": () => import("../components/tasks/modals/AddTask"),

@@ -24,5 +24,8 @@ export default {
   },
   setSort(state, value) {
     state.sort = value;
+  },
+  setTasksDownloaded(state, value) {
+    state.tasksDownloaded = value;
   }
 };

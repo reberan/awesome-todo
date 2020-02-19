@@ -1,5 +1,6 @@
 export default {
   tasks: {},
   search: "",
-  sort: "name"
+  sort: "name",
+  tasksDownloaded: false
 };

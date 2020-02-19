@@ -23,6 +23,12 @@ export default {
     let userId = firebaseAuth.currentUser.uid;
     let node = "tasks/" + userId;
     let userTasks = firebaseDatabase.ref(node);
+
+    // initial check for data
+    userTasks.once("value", () => {
+      commit("setTasksDownloaded", true);
+    });
+
     // child added
     userTasks.on("child_added", snapshot => {
       let task = snapshot.val();
