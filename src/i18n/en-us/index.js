@@ -42,6 +42,7 @@ export default {
   password: "Password",
   register: "Register",
   login: "Login",
+  logout: "Logout",
   validation_message_password_error: "Please use minimum 6 characters!",
   validation_message_email_error: "Invalid email address!"
 };

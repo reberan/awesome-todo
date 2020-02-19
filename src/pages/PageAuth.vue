@@ -28,7 +28,7 @@
 export default {
   data() {
     return {
-      activeTab: "register"
+      activeTab: "login"
     };
   },
   components: {

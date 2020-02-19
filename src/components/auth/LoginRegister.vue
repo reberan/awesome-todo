@@ -48,6 +48,7 @@
   </form>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -59,6 +60,7 @@ export default {
   },
   props: ["tab"],
   methods: {
+    ...mapActions("auth", ["registerUser", "loginUser"]),
     isValidEmailAddress(email) {
       // eslint-disable-next-line no-useless-escape
       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -72,9 +74,11 @@ export default {
         if (this.tab === "login") {
           // eslint-disable-next-line no-console
           console.log("user login");
+          this.loginUser(this.formData);
         } else {
           // eslint-disable-next-line no-console
           console.log("user register");
+          this.registerUser(this.formData);
         }
       }
     }

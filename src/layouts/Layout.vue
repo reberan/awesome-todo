@@ -6,10 +6,19 @@
           $t("appTitle")
         }}</q-toolbar-title>
         <q-btn
+          v-if="!loggedIn"
           icon-right="account_circle"
-          :label="$t('login')"
+          :label="$t(loggedIn ? 'logout' : 'login')"
           class="absolute-right"
           to="/auth"
+          flat
+        />
+        <q-btn
+          v-else
+          icon-right="account_circle"
+          :label="$t('logout')"
+          class="absolute-right"
+          @click="logoutUser"
           flat
         />
       </q-toolbar>
@@ -63,6 +72,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -70,6 +80,7 @@ export default {
     };
   },
   computed: {
+    ...mapState("auth", ["loggedIn"]),
     navs() {
       return [
         { label: this.$t("navigation_todo"), icon: "list", to: "/" },
@@ -81,6 +92,9 @@ export default {
         { label: this.$t("navigation_help"), icon: "help", to: "/help" }
       ];
     }
+  },
+  methods: {
+    ...mapActions("auth", ["logoutUser"])
   }
 };
 </script>
