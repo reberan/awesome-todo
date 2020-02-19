@@ -72,12 +72,8 @@ export default {
       password.validate();
       if (!email.hasError && !password.hasError) {
         if (this.tab === "login") {
-          // eslint-disable-next-line no-console
-          console.log("user login");
           this.loginUser(this.formData);
         } else {
-          // eslint-disable-next-line no-console
-          console.log("user register");
           this.registerUser(this.formData);
         }
       }

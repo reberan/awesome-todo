@@ -2,16 +2,16 @@ import { uid } from "quasar";
 import { firebaseAuth, firebaseDatabase } from "boot/firebase";
 
 export default {
-  updateTask({ commit }, payload) {
-    commit("updateTask", payload);
+  updateTask({ dispatch }, payload) {
+    dispatch("firebaseUpdateTask", payload);
   },
-  deleteTask({ commit }, id) {
-    commit("deleteTask", id);
+  deleteTask({ dispatch }, id) {
+    dispatch("firebaseDeleteTask", id);
   },
-  addTask({ commit }, task) {
+  addTask({ dispatch }, task) {
     let id = uid();
     let payload = { id, task };
-    commit("addTask", payload);
+    dispatch("firebaseAddTask", payload);
   },
   setSearch({ commit }, value) {
     commit("setSearch", value);
@@ -45,5 +45,26 @@ export default {
     userTasks.on("child_removed", snapshot => {
       commit("deleteTask", snapshot.key);
     });
+  },
+  // eslint-disable-next-line no-empty-pattern
+  firebaseAddTask({}, payload) {
+    let userId = firebaseAuth.currentUser.uid;
+    let node = "tasks/" + userId + "/" + payload.id;
+    let tasksRef = firebaseDatabase.ref(node);
+    tasksRef.set(payload.task);
+  },
+  // eslint-disable-next-line no-empty-pattern
+  firebaseUpdateTask({}, payload) {
+    let userId = firebaseAuth.currentUser.uid;
+    let node = "tasks/" + userId + "/" + payload.id;
+    let tasksRef = firebaseDatabase.ref(node);
+    tasksRef.update(payload.updates);
+  },
+  // eslint-disable-next-line no-empty-pattern
+  firebaseDeleteTask({}, taskId) {
+    let userId = firebaseAuth.currentUser.uid;
+    let node = "tasks/" + userId + "/" + taskId;
+    let tasksRef = firebaseDatabase.ref(node);
+    tasksRef.remove();
   }
 };
