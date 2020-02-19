@@ -40,7 +40,7 @@ export default {
   tab_register_banner_text:
     "Registrieren Sie sich, um überall auf Ihre Todos zuzugreifen!",
   email: "Email",
-  passwort: "Passwort",
+  password: "Passwort",
   register: "Registrieren",
   login: "Einloggen"
 };
