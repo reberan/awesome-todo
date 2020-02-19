@@ -1,6 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
-
+import "firebase/database";
 let firebaseConfig = {
   apiKey: "AIzaSyCqCHBnJ97f1LSeZPCCd5HtcepSHKAW7FU",
   authDomain: "quasar-awesome-todo-list.firebaseapp.com",
@@ -14,5 +14,7 @@ let firebaseConfig = {
 
 let firebaseApp = firebase.initializeApp(firebaseConfig);
 let firebaseAuth = firebaseApp.auth();
+let firebaseDatabase = firebaseApp.database();
 
 export { firebaseAuth };
+export { firebaseDatabase };

@@ -40,13 +40,14 @@ export default {
         showErrorMessage(error.message);
       });
   },
-  handleAuthStateChange({ commit }) {
+  handleAuthStateChange({ commit, dispatch }) {
     firebaseAuth.onAuthStateChanged(user => {
       Loading.hide();
       if (user) {
         commit("setLoggedIn", true);
         LocalStorage.set("loggedIn", true);
         this.$router.push("/").catch(error => error);
+        dispatch("tasks/firebaseReadData", null, { root: true });
       } else {
         commit("setLoggedIn", false);
         LocalStorage.set("loggedIn", false);
