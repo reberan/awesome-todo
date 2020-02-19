@@ -38,7 +38,6 @@
         https://vuejs.org/v2/guide/events.html#Event-Modifiers
 
         Event Modifiers
- v-html="$options.filters.searchHighlight(task.name, search)"
         It is a very common need to call event.preventDefault() 
         or event.stopPropagation() inside event handlers. 
         Although we can do this easily inside methods, 
@@ -104,25 +103,6 @@ export default {
     showEditTaskModal() {
       this.showEditTask = true;
     },
-    /*
-    searchHighlight() {
-      // eslint-disable-next-line no-console
-      let value = this.task.name;
-      let search = this.search;
-
-      if (this.search) {
-        let searchRegExp = new RegExp(search, "i");
-        let hightlight = value.replace(
-          searchRegExp,
-          match => '<span class="bg-yellow-6>' + match + "</span>"
-        );
-        // eslint-disable-next-line no-console
-        console.log("TCL: searchHighlight -> hightlight", hightlight);
-        return Vue.compile(hightlight).render;
-      }
-      return value;
-    },
-    */
     promptToDelete(id) {
       this.$q
         .dialog({

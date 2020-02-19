@@ -1,8 +1,8 @@
 {
   "name": "awesome-todo",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Awesome Todo: A Quasar Framework app",
+  "productName": "Awesome Todo",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
   "author": "reberan",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
+    "firebase": "^7.8.2",
     "quasar": "^1.0.0",
     "vue-i18n": "^8.0.0"
   },

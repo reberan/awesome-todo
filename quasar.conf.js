@@ -6,7 +6,7 @@ module.exports = function(ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
-    boot: ["i18n", "axios"],
+    boot: ["i18n", "axios", "firebase", "router-auth"],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ["app.scss"],
@@ -43,7 +43,7 @@ module.exports = function(ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: ["Dialog", "LocalStorage"]
+      plugins: ["Dialog", "LocalStorage", "Loading"]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -95,9 +95,9 @@ module.exports = function(ctx) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: "Quasar App",
-        short_name: "Quasar App",
-        description: "A Quasar Framework app",
+        name: "Awesome Todo",
+        short_name: "Awesome Todo",
+        description: "Awesome Todo: A Quasar Framework app",
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",

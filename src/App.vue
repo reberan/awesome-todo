@@ -11,11 +11,13 @@ export default {
     ...mapGetters("settings", ["settings"])
   },
   methods: {
-    ...mapActions("settings", ["getSettings"])
+    ...mapActions("settings", ["getSettings"]),
+    ...mapActions("auth", ["handleAuthStateChange"])
   },
   mounted() {
     this.getSettings();
     this.$i18n.locale = this.settings.language || "en-us";
+    this.handleAuthStateChange();
   }
 };
 </script>
