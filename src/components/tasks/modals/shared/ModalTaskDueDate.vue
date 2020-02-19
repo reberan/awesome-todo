@@ -26,7 +26,6 @@
     </q-input>
   </div>
 </template>
-
 <script>
 export default {
   props: ["dueDate"]

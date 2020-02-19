@@ -7,8 +7,9 @@
     @click="updateTask({ id: id, updates: { completed: !task.completed } })"
   >
     <q-item-section side top>
-      <q-checkbox v-model="task.completed" class="no-pointer-events" />
-    </q-item-section>
+      <q-checkbox class="no-pointer-events" v-model="task.completed">
+      </q-checkbox
+    ></q-item-section>
 
     <q-item-section>
       <q-item-label :class="{ 'text-strikethrough': task.completed }"
@@ -19,7 +20,7 @@
     <q-item-section side v-if="task.dueDate">
       <div class="row">
         <div class="column justify-">
-          <q-icon name="event" size="18px" class="q-mr-xs" />
+          <q-icon class="q-mr-xs" name="event" size="18px"> </q-icon>
         </div>
         <div class="column">
           <q-item-label class="row justify-end" caption
@@ -58,7 +59,7 @@
         v-on:click.prevent.self will prevent all clicks while 
         v-on:click.self.prevent will only prevent clicks on the element itself.
     -->
-    <q-item-section side>
+    <q-item-section side="">
       <q-btn
         flat
         round
@@ -66,9 +67,10 @@
         color="blue"
         icon="edit"
         @click.stop="showEditTask = true"
-      />
-    </q-item-section>
-    <q-item-section side>
+      >
+      </q-btn
+    ></q-item-section>
+    <q-item-section side="">
       <q-btn
         flat
         round
@@ -76,11 +78,13 @@
         color="red"
         icon="delete"
         @click.stop="promptToDelete(id)"
-      />
-    </q-item-section>
+      >
+      </q-btn
+    ></q-item-section>
     <q-dialog v-model="showEditTask">
-      <edit-task @closeEditTask="showEditTask = false" :task="task" :id="id" />
-    </q-dialog>
+      <edit-task @closeEditTask="showEditTask = false" :task="task" :id="id">
+      </edit-task
+    ></q-dialog>
   </q-item>
 </template>
 <script>
