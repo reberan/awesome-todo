@@ -49,6 +49,7 @@ export default {
         this.$router.push("/").catch(error => error);
         dispatch("tasks/firebaseReadData", null, { root: true });
       } else {
+        commit("tasks/clearTasks", null, { root: true });
         commit("tasks/setTasksDownloaded", false, { root: true });
         commit("setLoggedIn", false);
         LocalStorage.set("loggedIn", false);
