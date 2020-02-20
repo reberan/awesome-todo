@@ -44,5 +44,8 @@ export default {
   login: "Login",
   logout: "Logout",
   validation_message_password_error: "Please use minimum 6 characters!",
-  validation_message_email_error: "Invalid email address!"
+  validation_message_email_error: "Invalid email address!",
+  notification_message_task_created: "Task created",
+  notification_message_task_updated: "Task updated",
+  notification_message_task_deleted: "Task deleted"
 };

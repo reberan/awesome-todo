@@ -47,5 +47,8 @@ export default {
   logout: "Ausloggen",
   validation_message_password_error:
     "Bitte verwenden Sie mindestens 6 Zeichen!",
-  validation_message_email_error: "Ungültige E-Mail-Adresse!"
+  validation_message_email_error: "Ungültige E-Mail-Adresse!",
+  notification_message_task_created: "Aufgabe erstellt",
+  notification_message_task_updated: "Aufgabe aktualisiert",
+  notification_message_task_deleted: "Aufgabe gelöscht"
 };
