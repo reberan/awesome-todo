@@ -58,7 +58,7 @@ export default {
       }
     };
   },
-  props: ["tab", "lol"],
+  props: ["tab"],
   methods: {
     ...mapActions("auth", ["registerUser", "loginUser"]),
     isValidEmailAddress(email) {
