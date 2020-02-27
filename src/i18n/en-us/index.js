@@ -34,6 +34,7 @@ export default {
   settings_page_help: "Help",
   settings_page_visit_our_website: "Visit our Website",
   settings_page_email_us: "Email us",
+  settings_email_subject: "Awesome Todo Feedback",
   language_de: "German",
   language_en: "English",
   tab_register_banner_text: "Register to access your Todos anywhere!",
