@@ -19,6 +19,9 @@ export default {
     // as Vue cannot detect normal property additions(e.g.this.myObject.newProperty = 'hi').
     Vue.set(state.tasks, id, task);
   },
+  clearTasks(state) {
+    state.tasks = {};
+  },
   setSearch(state, value) {
     state.search = value;
   },

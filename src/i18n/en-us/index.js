@@ -34,6 +34,7 @@ export default {
   settings_page_help: "Help",
   settings_page_visit_our_website: "Visit our Website",
   settings_page_email_us: "Email us",
+  settings_email_subject: "Awesome Todo Feedback",
   language_de: "German",
   language_en: "English",
   tab_register_banner_text: "Register to access your Todos anywhere!",
@@ -44,5 +45,8 @@ export default {
   login: "Login",
   logout: "Logout",
   validation_message_password_error: "Please use minimum 6 characters!",
-  validation_message_email_error: "Invalid email address!"
+  validation_message_email_error: "Invalid email address!",
+  notification_message_task_created: "Task created",
+  notification_message_task_updated: "Task updated",
+  notification_message_task_deleted: "Task deleted"
 };

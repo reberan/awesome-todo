@@ -1,5 +1,8 @@
 import { uid } from "quasar";
+import { Notify } from "quasar";
 import { firebaseAuth, firebaseDatabase } from "boot/firebase";
+import { showErrorMessage } from "src/functions/function-show-error-message";
+import { i18n } from "src/boot/i18n";
 
 export default {
   updateTask({ dispatch }, payload) {
@@ -25,9 +28,16 @@ export default {
     let userTasks = firebaseDatabase.ref(node);
 
     // initial check for data
-    userTasks.once("value", () => {
-      commit("setTasksDownloaded", true);
-    });
+    userTasks.once(
+      "value",
+      () => {
+        commit("setTasksDownloaded", true);
+      },
+      error => {
+        showErrorMessage(error.message);
+        this.$router.replace("/auth");
+      }
+    );
 
     // child added
     userTasks.on("child_added", snapshot => {
@@ -57,20 +67,47 @@ export default {
     let userId = firebaseAuth.currentUser.uid;
     let node = "tasks/" + userId + "/" + payload.id;
     let tasksRef = firebaseDatabase.ref(node);
-    tasksRef.set(payload.task);
+    tasksRef.set(payload.task, error => {
+      if (error) {
+        showErrorMessage(error.message);
+      } else {
+        Notify.create({
+          message: i18n.t("notification_message_task_created")
+        });
+      }
+    });
   },
   // eslint-disable-next-line no-empty-pattern
   firebaseUpdateTask({}, payload) {
     let userId = firebaseAuth.currentUser.uid;
     let node = "tasks/" + userId + "/" + payload.id;
     let tasksRef = firebaseDatabase.ref(node);
-    tasksRef.update(payload.updates);
+    tasksRef.update(payload.updates, error => {
+      if (error) {
+        showErrorMessage(error.message);
+      } else {
+        let keys = Object.keys(payload.updates);
+        if (!(keys.includes("completed") && keys.length === 1)) {
+          Notify.create({
+            message: i18n.t("notification_message_task_updated")
+          });
+        }
+      }
+    });
   },
   // eslint-disable-next-line no-empty-pattern
   firebaseDeleteTask({}, taskId) {
     let userId = firebaseAuth.currentUser.uid;
     let node = "tasks/" + userId + "/" + taskId;
     let tasksRef = firebaseDatabase.ref(node);
-    tasksRef.remove();
+    tasksRef.remove(error => {
+      if (error) {
+        showErrorMessage(error.message);
+      } else {
+        Notify.create({
+          message: i18n.t("notification_message_task_deleted")
+        });
+      }
+    });
   }
 };
